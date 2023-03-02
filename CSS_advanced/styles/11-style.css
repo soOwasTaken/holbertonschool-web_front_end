@@ -49,21 +49,18 @@ html {
   }
   
   .card-category {
-    color: #d73953;
+    color: var(--color-primary);
   }
   
   .section-tagline {
-    color: #d73953;
     font-style: var(--section-tagline-transform);
     font-family: var(--font-family-title);
     font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
   }
   
   .section-header {
     text-align: var(--section-header-align);
-  }
-  .section-tagline, .card-category {
-    color: var(--color-primary);
   }
   
   body, a {
