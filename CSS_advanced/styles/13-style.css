@@ -52,7 +52,8 @@
     text-decoration: none;
   }
 
-  a:not(:empty) {
+  a:link {
+    color: var(--text-color);
     text-decoration: none;
   }
 
