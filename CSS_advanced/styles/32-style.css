@@ -131,7 +131,7 @@ ul.row {
 }
 
 .card-work:hover .card-image {
-  transition: var(--transition-duration);
+  transition: var(--transition-duration) var(--transition-cubic-bezier);
   transform: scale(1.2);
 }
 
