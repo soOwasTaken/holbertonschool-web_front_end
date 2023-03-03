@@ -80,7 +80,7 @@ ul.row {
   height: 10rem;
 }
 
-.card-testimonial cite {
+.card-testimonial .card-quote cite {
   display: block;
   padding-top: 1rem;
   color: var(--color-primary);
