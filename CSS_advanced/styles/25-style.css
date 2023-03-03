@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   --nav-item-margin: 0 0 3rem 0; 
   --nav-item-link-hover: var(--color-primary);
   --section-tagline-margin: 0;
-  --buton-display : inline-block;
+  --button-display : inline-block;
   --button-padding: 1.5 rem 3rem;
   --button-border: 0.2rem solid var(--color-primary);
   --button-color: var(--color-black);
