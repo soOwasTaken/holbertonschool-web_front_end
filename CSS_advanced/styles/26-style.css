@@ -74,7 +74,7 @@ ul.row {
   text-align: center;
 }
 
-.card-avatar .card-testimonial {
+.card-testimonial .card-avatar  {
   border-radius: 50%;
   width: 10rem;
   height: 10rem;
@@ -88,6 +88,10 @@ ul.row {
 
 .section {
   padding: var(--section-padding);
+}
+
+.section-hero {
+  background-size:
 }
 
 .section-header {
