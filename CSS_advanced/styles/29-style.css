@@ -225,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--nav-item-link-hover);
 }
 
-nav .nav-link::before {
+.nav .nav-link::before {
   content: '';
   position: absolute;
   top: 0;
