@@ -520,12 +520,10 @@ ul.row {
   min-height: 50vh;
 }
 
-/* Target .section-body inside .section-hero */
 .section-hero .section-body {
   padding: 10rem 4rem; /* Add the 'padding' property */
 }
 
-/* Target .section-category inside .section-hero */
 .section-hero .section-category {
   color: var(--color-white); /* Point to the variable 'color-white' */
   text-transform: uppercase; /* Add the 'text-transform' property */
