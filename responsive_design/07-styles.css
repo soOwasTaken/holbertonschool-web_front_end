@@ -164,6 +164,17 @@
     color: var(--color-primary);
     background: var(--color-white);
   }
+
+  @media (max-width: 480px) {
+    html {
+      font-size: 57%;
+    }
+  }
+  @media (max-width: 481px) {
+    html {
+      font-size: 60%;
+    }
+  }
   
   /* Helpers
       ============================= */

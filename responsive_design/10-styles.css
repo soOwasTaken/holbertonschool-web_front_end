@@ -164,6 +164,17 @@
     color: var(--color-primary);
     background: var(--color-white);
   }
+
+  @media (max-width: 480px) {
+    html {
+      font-size: 57%;
+    }
+  }
+  @media (max-width: 481px) {
+    html {
+      font-size: 60%;
+    }
+  }
   
   /* Helpers
       ============================= */
@@ -450,6 +461,19 @@
   .social-link > svg {
     fill: var(--text-color);
   }
+
+  @media (max-width: 767px) {
+    :root {
+      --footer-padding: 5rem 2rem 1rem;
+    }
+    .footer .footer-nav .footer .social-nav {
+      text-align: center;
+    }
+    .social.nav li + li,
+    .footer-nav li + li {
+    padding-left: 2rem;
+    }
+  }
   
   /*** 3. SECTION ***/
   
@@ -502,6 +526,11 @@
   
   /* Section HERO
       ============================= */
+
+  .article-page .section-hero {
+    margin-top: -8.5rem;
+    padding-top: 5rem;
+  }
   
   .section-hero {
     position: relative;
@@ -644,7 +673,19 @@
   .card-work:hover .card-title {
     opacity: 1;
   }
-  
+
+  @media (max-width: 767px) {
+    .card-work .card-inner {
+      --text-color: var(--color-white);
+      position: relative;
+    }
+    .card-work .card-title {
+      opacity: 1;
+    }
+    .card-title .card-work a{
+      padding: 2rem 1rem 0 1rem;
+    }
+  }
   /* Card SERVICES
       ============================= */
   
