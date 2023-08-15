@@ -223,8 +223,13 @@
   /* Navbar
       ============================= */
 
+  :root {
+    --nav-item-margin: 0;
+  }
+
   .navbar-menu {
     display: none;
+    flex: 1;
   }
   
   .nav {
@@ -233,6 +238,13 @@
     list-style: none;
     text-align: center;
     display: flex;
+  }
+
+  .nav .header {
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
   }
   
   .nav .nav-item {
@@ -412,8 +424,20 @@
   }
 
   @media (max-width: 767px) {
+    :root {
+      --nav-item-margin: 0;
+    }
     .section-latest-news .row {
       flex-direction: column;
+    }
+    .navbar-menu {
+      flex:1;
+    }
+    .nav .header {
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.2s ease-out;
     }
   }
   
