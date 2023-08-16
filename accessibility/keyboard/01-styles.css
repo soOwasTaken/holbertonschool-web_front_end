@@ -702,7 +702,7 @@
       background-color: rgba(0,0,0,0.7);
     }
 
-    .card-work .card-title a {
+    .card-work .card-title a:hover {
         opacity: 1;
         height : 100%;
         background-color: rgba(0,0,0,0.7);
