@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <script type="application/javascript">
+        function addPostRow(data) {
+            $('body').append(
+                `<p>Post created with id <span>${data.id}</span>, title: <span>${data.title}</span>, author: <span>${data.author}</span></p>`
+            );
+        }
+
+        function buildForm() {
+            const formHTML = `
+                <form id="postForm">
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author">
+                    </div>
+                    <div>
+                        <label for="title">Title:</label>
+                        <textarea id="title"></textarea>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            `;
+            $('body').append(formHTML);
+            
+            $('#postForm').submit(function(event) {
+                event.preventDefault();
+                sendForm();
+            });
+        }
+
+        function sendForm() {
+            $('#postForm').after('About to send the query to the API');
+
+            const data = {
+                title: $('#title').val(),
+                author: $('#author').val()
+            };
+
+            $.ajax({
+                url: 'http://localhost:3000/posts',
+                method: 'POST',
+                data: data,
+                success: function(responseData) {
+                    addPostRow(responseData);
+                },
+                error: function() {
+                    alert('Error sending the POST query');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            listPosts();
+            buildForm();
+        });
+
+        function listPosts() {
+            $.ajax({
+                url: 'http://localhost:3000/posts',
+                method: 'GET',
+                success: function(posts) {
+                    for (let post of posts) {
+                        addPostRow(post);
+                    }
+                },
+                error: function() {
+                    alert('Server Error');
+                }
+            });
+        }
+
+    </script>
+    <title>Wikipedia Search</title>
+</head>
+
+<body>
+</body>
+
+</html>

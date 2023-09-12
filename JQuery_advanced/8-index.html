@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <script type="application/javascript">
+        function createSearchForm() {
+            const searchInput = $('<input>').attr('type', 'text');
+            const submitInput = $('<input>').attr('type', 'submit').val('Search');
+
+            submitInput.click(function (event) {
+                event.preventDefault();
+                const searchTerm = searchInput.val();
+                queryWikipedia(searchTerm);
+            });
+
+            const ulElem = $('<ul>');
+            const paginationList = $('<ul>').attr('id', 'pagination');
+
+            $('body').append(searchInput, submitInput, ulElem, paginationList);
+        }
+
+        function addNewArticle(id, title, snippet) {
+            const liElem = $('<li>');
+            const p1Elem = $('<p>').append($('<span>').text(id + ' - '), $('<b>').text(title));
+            const p2Elem = $('<p>').html(snippet);
+
+            liElem.append(p1Elem, p2Elem);
+            $('ul:not(#pagination)').append(liElem);
+        }
+
+        function queryWikipedia(search, offset = 0) {
+    $.ajax({
+        url: 'https://en.wikipedia.org/w/api.php',
+        data: {
+            action: 'query',
+            list: 'search',
+            srsearch: search,
+            format: 'json',
+            utf8: 1,
+            origin: '*',
+            srlimit: 10,
+            sroffset: offset
+        },
+        method: 'GET',
+        success: function (data) {
+            $('ul:not(#pagination)').empty();
+
+            const results = data.query.search;
+            results.forEach(function (result) {
+                addNewArticle(result.pageid, result.title, result.snippet);
+            });
+
+            buildPagination(data.query.searchinfo.totalhits, 10, offset);
+        }
+    });
+}
+
+function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
+    $('#pagination').empty();
+
+    let totalPages = Math.ceil(numberOfItems / itemsPerPage);
+
+    // Limit the number of pages to display, for instance to 50
+    totalPages = Math.min(totalPages, 100);
+
+    for (let i = 0; i < totalPages; i++) {
+        let li = $('<li>')
+            .text(i + 1)
+            .css({
+                'cursor': 'pointer',
+                'margin-left': '10px',
+                'display': 'inline-block'
+            })
+            .click(function () {
+                queryWikipedia(searchTerm, i * itemsPerPage);
+            });
+
+        if (i * itemsPerPage === currentOffset) {
+            li.css('font-weight', 'bold');
+        }
+
+        $('#pagination').append(li);
+    }
+}
+
+let searchTerm = ''; // to store the last searched term
+
+$(function () {
+    createSearchForm();
+
+    $('input[type="submit"]').click(function (event) {
+        event.preventDefault();
+        searchTerm = $('input[type="text"]').val();
+        queryWikipedia(searchTerm);
+    });
+});
+    </script>
+    <title>Wikipedia Search</title>
+</head>
+
+<body>
+</body>
+
+</html>
