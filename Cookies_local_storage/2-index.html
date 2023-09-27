@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Setter</title>
+</head>
+
+<body>
+    <h1>Login to the website</h1>
+    <input type="text" id="firstname" placeholder="First Name">
+    <input type="text" id="email" placeholder="Email">
+    <button onclick="setCookies()">Log me in</button>
+    <h1>Cookies</h1>
+    <button onclick="showCookies()">Show the cookies</button>
+    <script>
+        function setCookies() {
+            var firstnameValue = document.getElementById('firstname').value;
+            var emailValue = document.getElementById('email').value;
+            var expires = new Date(Date.now() + 10 * 86400 * 1000).toUTCString();
+            document.cookie = `firstname=${firstnameValue}; expires=${expires}`;
+            document.cookie = `email=${emailValue}; expires=${expires}`;
+            console.log('Cookies set');
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return "";
+        }
+
+        function showCookies() {
+            var email = getCookie('email');
+            var firstname = getCookie('firstname');
+            var pElement = document.createElement('p');
+            pElement.textContent = `Email: ${email} - Firstname: ${firstname}`;
+            document.body.appendChild(pElement);
+        }
+    </script>
+</body>
+
+</html>

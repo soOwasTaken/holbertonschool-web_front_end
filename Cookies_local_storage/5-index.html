@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Setter</title>
+    <style>
+        #loginForm {
+            display: none;
+        }
+
+        .logout {
+            font-weight: normal;
+            font-style: italic;
+            position: relative;
+            left: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/src/js.cookie.min.js"></script>
+</head>
+
+<body onload="showWelcomeMessageOrForm()">
+    <div id="loginForm">
+        <h2>Login Form</h2>
+        <input type="text" id="firstname" placeholder="First Name">
+        <input type="text" id="email" placeholder="Email">
+        <button onclick="setCookiesAndShowWelcomeMessage();">Log me in</button>
+    </div>
+    <script>
+        var availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+    
+        if (typeof(Storage) !== "undefined") {
+            // Code for localStorage/sessionStorage.
+            createStore();
+            displayCart();
+        } else {
+            // Sorry! No Web Storage support..
+            alert('Sorry, your browser does not support Web storage. Try again with a better one.');
+        }
+    
+        function addItemToCart(item) {
+            localStorage.setItem(item, 'true');
+        }
+    
+        function createStore() {
+            var ulElement = document.createElement('ul');
+            document.body.appendChild(ulElement);
+    
+            availableItems.forEach(function(item) {
+                var liElement = document.createElement('li');
+                liElement.textContent = item;
+                liElement.onclick = function() {
+                    addItemToCart(item);
+                };
+                ulElement.appendChild(liElement);
+            });
+        }
+    
+        function displayCart() {
+            var count = 0;
+            for (var i = 0; i < localStorage.length; i++) {
+                if (localStorage.getItem(localStorage.key(i)) === 'true') {
+                    count++;
+                }
+            }
+    
+            if (count > 0) {
+                var pElement = document.createElement('p');
+                pElement.textContent = `You previously had ${count} items in your cart`;
+                document.body.appendChild(pElement);
+            }
+        }
+    </script>
+</body>
+
+</html>
